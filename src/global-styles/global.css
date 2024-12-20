@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'MarlinSans';
+  src: url('../../public/fonts/MarlinSans/MarlinSans-Light.otf')
+    format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MarlinSans';
+  src: url('../../public/fonts/MarlinSans/MarlinSans-Regular.otf')
+    format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MarlinSans';
+  src: url('../../public/fonts/MarlinSans/MarlinSans-Medium.otf')
+    format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'alegreya';
+  src: url('../../public/fonts/AlegreyaSC-Regular.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'caveat';
+  src: url('../../public/fonts/Caveat-Regular.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'caveat';
+  src: url('../../public/fonts/Caveat-Medium.ttf')
+    format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'rubik';
+  src: url('../../public/fonts/RubikWetPaint-Regular.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'text';
+  src: url('../../public/fonts/BalsamiqSans-Regular.ttf')
+    format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    @apply h-screen text-black;
+    font-family: 'caveat';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: black;
+    background-attachment: fixed;
+    overflow: hidden;
+  }
+
+  .wrapper {
+    max-width: 1640px;
+    margin: 0 auto;
+    @apply px-sm sm:px-md md:px-lg lg:px-lg xl:px-xl;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  button:disabled {
+    opacity: 0.5;
+  }
+
+  body::-webkit-scrollbar {
+    width: 5px;
+    display: block;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    @apply bg-primary-main;
+  }
+
+  
+
+  /* skeleton Card */
+  .skeleton-card br {
+    display: none;
+  }
+
+  .skeleton-card > span {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+  }
+
+  .skeleton-card .react-loading-skeleton:first-child {
+    height: 210px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    @apply rounded-sm mb-[20px];
+  }
+
+  .skeleton-card .react-loading-skeleton:nth-of-type(2),
+  .skeleton-card .react-loading-skeleton:nth-of-type(3),
+  .skeleton-card .react-loading-skeleton:nth-of-type(4) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-bottom: 15px;
+    height: 21px;
+  }
+
+  h1 {
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 120%;
+    font-family: rubik;
+  }
+
+  .skeleton-card .react-loading-skeleton:nth-of-type(3) {
+    width: 90%;
+  }
+
+  .skeleton-card .react-loading-skeleton:nth-of-type(4) {
+    width: 70%;
+  }
+
+  .skeleton-card .react-loading-skeleton:nth-of-type(5) {
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+  }
+
+  .skeleton-card .react-loading-skeleton:last-of-type {
+    height: 15px;
+    width: 70px;
+    margin-left: 10px;
+    margin-top: 8px;
+  }
+
+  .lazy-load-image-background.blur {
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+  }
+
+  .custom-dropdown label {
+    letter-spacing: 0.03em;
+    font-size: 14px;
+    @apply text-black;
+  }
+
+  .custom-dropdown label.leading-tight {
+    font-size: 11px;
+  }
+
+  .custom-dropdown label:before {
+    border-top-width: 1px;
+    border-left-width: 1px;
+  }
+
+  .custom-dropdown label:after {
+    border-top-width: 1px;
+    border-right-width: 1px;
+  }
+
+  .custom-dropdown button {
+    border-width: 1px;
+  }
+
+  .search label {
+    font-size: 14px;
+  }
+}
+
+@layer utilities {
+  .animation-delay-1 {
+    animation-delay: 100ms;
+  }
+  .animation-delay-2 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-3 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-4 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-5 {
+    animation-delay: 500ms;
+  }
+  .animation-delay-6 {
+    animation-delay: 600ms;
+  }
+
+  .item {
+    @apply mb-2 shadow-md relative perspective-1000 text-[14px] h-[26px];
+  }
+
+  .back {
+    @apply backface-hidden p-2 absolute rounded shadow-md border-gray-300 bg-[#cc0000] w-full h-full py-1 px-2;
+    @apply ease-cubic;
+    pointer-events: none;
+    transform: rotateX(180deg);
+  }
+
+  .backend {
+    backface-visibility: visible!important;
+    transform: rotateX(0deg)!important;
+  }
+
+  .front {
+    @apply backface-visible p-2 absolute rounded shadow-md border-gray-300 bg-[#ffffff] w-full h-full py-1 px-2;
+    pointer-events: none;
+    @apply ease-cubic;
+  }
+}
+

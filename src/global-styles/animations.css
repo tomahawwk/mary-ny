@@ -1,0 +1,137 @@
+.animation-fade-y {
+  animation: fadeY 0.5s forwards;
+  transform: translateY(15px);
+  opacity: 0;
+  @apply ease-cubic;
+}
+
+.animation-fade-y1 {
+  animation: fadeY 0.5s forwards;
+  /* transform: translateY(15px); */
+  opacity: 0;
+  /* @apply ease-cubic; */
+}
+
+.animation-fade-y-reverse {
+  animation: fadeYRev 0.5s forwards;
+  transform: translateY(-15px);
+  opacity: 0;
+  @apply ease-cubic;
+}
+
+.animation-scale {
+  animation: scale 0.6s forwards;
+  transform: scale(0.9);
+  opacity: 0;
+  @apply ease-cubic;
+}
+
+.animation-logo {
+  animation: logo 0.5s forwards;
+  @apply ease-cubic;
+}
+
+.item.active .front{
+  animation: qwe 0.5s forwards;
+}
+.item.active .back{
+  animation: qwe2 0.5s forwards;
+}
+
+.item.active .backend{
+  animation: qwe2 0s forwards;
+} 
+
+.item.actived .back{
+  animation: qwe2 0s forwards!important;
+}
+
+.item.actived .front{
+  animation: qwe 0s forwards!important;
+}
+
+.item.calm, .item.calm .front, .item.calm .back, .item.calm .backend{
+  box-shadow: 0px 0px 0px rgba(0,0,0,.0);
+} 
+
+.item.calm {
+  pointer-events: none;
+  animation: qwe3 0.5s forwards;
+}
+
+@keyframes logo {
+  from {
+    transform: translateY(10px) scale(0.8) rotate(-45deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeY {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeYRev {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scale {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes qwe3 {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(.9);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes qwe {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(180deg);
+  }
+}
+
+@keyframes qwe2 {
+  from {
+    transform: rotateX(180deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
