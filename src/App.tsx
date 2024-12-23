@@ -17,9 +17,9 @@ function App() {
   const [play4] = useSound(hihiSound, {volume: 1});
   const [play5] = useSound(winSound, {volume: .3});
   const [amb] = useSound(ambSound, {volume: .05});
-  const [ambientActive, setAmbientActive] = useState<boolean>(false);
   
   const startGame = () => {
+    amb();
     setGameStarted(!gameStarted);
     setTimeout(() => {
       setGameStarted2(true);
@@ -33,13 +33,6 @@ function App() {
     }, 1200);
   }
 
-  const ambient = () => {
-    if(!ambientActive){
-      setAmbientActive(true);
-      amb();
-    }
-  }
-
   useEffect(() => {
     if(endGame){
       play5();
@@ -49,11 +42,6 @@ function App() {
       }, 1300);
     }
   }, [endGame]);
-
-  document.onmouseover = () => {
-    ambient();
-  }
-
   return (
     <div className="App overflow-hidden">
       <Snowfall snowflakeCount={200} radius={[0.1, .3]} />
@@ -83,8 +71,9 @@ function App() {
             <DragDropComponent onEnd={setEndGame} />
           </div>
         )}
-      <div className="absolute w-[90%] m-auto left-0 right-0 top-[20px] bg-[rgba(255,255,255,0.2)] rounded-sm p-[15px]">
-        1234
+      <div className="flex flex-col gap-[15px] md:hidden absolute w-[calc(100vw-48px)] left-[16px] top-[20px] bg-[rgba(255,255,255,0.2)] rounded-sm p-[15px]">
+        <img src="/images/touch.jpg" className="w-full block rounded-sm overflow-hidden" />
+        <p className="text-center text-white text-[24px] leading-none">Тебе придется включить компудактер 👾</p>
       </div>
     </div>
   );
