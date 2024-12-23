@@ -84,7 +84,7 @@ function App() {
           </div>
         )}
       <div className="absolute w-[90%] m-auto left-0 right-0 top-[20px] bg-[rgba(255,255,255,0.2)] rounded-sm p-[15px]">
-        123
+        1234
       </div>
     </div>
   );
