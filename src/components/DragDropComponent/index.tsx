@@ -1,5 +1,9 @@
 import React, { FC, useState } from 'react';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import useSound from 'use-sound';
+
+import switchSound from '../../sounds/1.mp3';
+import yoSound from '../../sounds/2.mp3';
 
 interface Props {
   onEnd(value: boolean): void;
@@ -7,6 +11,9 @@ interface Props {
 
 const DragDropComponent: FC<Props> = ({onEnd}) => {
   const [endGame, setEndGame] = useState<boolean>(false);
+  const [play] = useSound(switchSound, {volume: 1});
+  const [play2] = useSound(yoSound, {volume: .5});
+
   const initialColumns: any = {
     todo: {
       id: 'todo',
@@ -64,6 +71,7 @@ const DragDropComponent: FC<Props> = ({onEnd}) => {
       if (newColumn.id === 'done' && checkCorrectOrder(newList)) {
         setEndGame(true);
         onEnd(true);
+        play2();
       }
     } else {
       const newStartList = Array.from(start.list);
@@ -95,6 +103,8 @@ const DragDropComponent: FC<Props> = ({onEnd}) => {
         [newEndColumn.id]: newEndColumn
       }));
 
+      play();
+
       // Проверка порядка в колонке "done"
       if (newEndColumn.id === 'done' && checkCorrectOrder(newEndList)) {
         console.log('Correct order in Done column!');
@@ -111,8 +121,14 @@ const DragDropComponent: FC<Props> = ({onEnd}) => {
             <div
               ref={provided.innerRef}
               {...provided.droppableProps}
-              className="bg-[rgba(255,255,255,0.2)] rounded-sm p-[15px] w-1/2"
+              className="bg-[rgba(255,255,255,0.2)] rounded-sm p-[15px] w-1/2 duration-[.4s] relative"
+              style={{transform: endGame ? 'scaleX(1.7) translateX(-30px)' : 'none'}}
             >
+              <div className="absolute top-0 left-0 right-0 bottom-0 m-auto w-[100%] h-[100%]">
+                <img src="/images/qr.png" alt="qr" className="w-full h-full duration-[.4s] delay-[.4s] pointer-events-none ease-cubic" style={{transform: endGame ? 'scale(1)' : 'scale(.5)', 
+                  opacity: endGame ? '1' : '0'
+                }}  />
+              </div>
               {columns.todo.list.map((item: any, index: any) => (
                 <Draggable key={item.id} draggableId={item.id} index={index}>
                   {(provided) => (
@@ -122,7 +138,7 @@ const DragDropComponent: FC<Props> = ({onEnd}) => {
                       {...provided.dragHandleProps}
                       className="item"
                     >
-                      <div className="front">?</div>
+                      <div className="front">???</div>
                       <div className="back">{item.content}</div>
                     </div>
                   )}
@@ -151,7 +167,7 @@ const DragDropComponent: FC<Props> = ({onEnd}) => {
                       className={`item active ${item.actived ? "actived" : ""} ${endGame ? " calm" : ""}`}
                     >
                       <div className="front">?</div>
-                      {item.actived ? <div className="back backend">{item.content}</div> : <div className="front">?</div>}
+                      {item.actived ? <div className="back backend">{item.content}</div> : <div className="front">???</div>}
                       <div className="back">{item.content}</div>
                     </div>
                   )}

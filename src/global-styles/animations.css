@@ -56,7 +56,15 @@
 
 .item.calm {
   pointer-events: none;
-  animation: qwe3 0.5s forwards;
+  animation: qwe4 0.5s forwards;
+}
+
+.item.calm .back{
+  animation: qwe5 0.5s forwards!important;
+}
+
+.item.calm .front{
+  animation: qwe5 0.5s forwards!important;
 }
 
 @keyframes logo {
@@ -103,7 +111,26 @@
   }
 }
 
-@keyframes qwe3 {
+@keyframes qwe5 {
+  0% {
+    background: rgb(21, 19, 19);
+    color: black;
+  }
+  20% {
+    background: rgb(86, 85, 85);
+    color: black;
+  }
+  70% {
+    background: rgb(7, 218, 7);
+    color: white;
+  }
+  100% {
+    background: #63a4a5;
+    color: white;
+  }
+}
+
+@keyframes qwe4 {
   0% {
     transform: scale(1);
   }

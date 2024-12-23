@@ -1,13 +1,23 @@
 
 import Snowfall from 'react-snowfall'
-import { useState } from 'react';
+import {useEffect, useState } from 'react';
+import qweSound from './sounds/3.mp3';
+import ambSound from './sounds/amb.mp3';
+import hihiSound from './sounds/5.mp3';
+import winSound from './sounds/6.mp3';
 import DragDropComponent from 'components/DragDropComponent';
+import useSound from 'use-sound';
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [gameStarted2, setGameStarted2] = useState<boolean>(false);
   const [endGame, setEndGame] = useState<boolean>(false);
+  const [play3] = useSound(qweSound, {volume: .07});
+  const [play4] = useSound(hihiSound, {volume: 1});
+  const [play5] = useSound(winSound, {volume: .3});
+  const [amb] = useSound(ambSound, {volume: .05});
+  const [ambientActive, setAmbientActive] = useState<boolean>(false);
   
   const startGame = () => {
     setGameStarted(!gameStarted);
@@ -16,16 +26,38 @@ function App() {
     }, 300);
     setTimeout(() => {
       setOpen(true);
+      play3();
     }, 700);
     setTimeout(() => {
       setOpen(false);
     }, 1200);
   }
 
+  const ambient = () => {
+    if(!ambientActive){
+      setAmbientActive(true);
+      amb();
+    }
+  }
+
+  useEffect(() => {
+    if(endGame){
+      play5();
+      setTimeout(() => {
+        setOpen(true);
+        play4();
+      }, 1300);
+    }
+  }, [endGame]);
+
+  document.onmouseover = () => {
+    ambient();
+  }
+
   return (
     <div className="App overflow-hidden">
       <Snowfall snowflakeCount={200} radius={[0.1, .3]} />
-      <div className="w-[1000px] h-[1000px] absolute top-0 bottom-0 right-0 m-auto left-0 overflow-hidden duration-[.4s]" style={{transform: gameStarted ? 'translateX(-300px)' : 'translateX(-100px)'}}>
+      <div className="hidden md:block w-[1000px] h-[1000px] absolute top-0 bottom-0 right-0 m-auto left-0 overflow-hidden duration-[.4s]" style={{transform: gameStarted ? 'translateX(-300px)' : 'translateX(-100px)'}}>
           <div style={{opacity: open ? 1 : 0 }}>
             <img src="/images/2.png" className="absolute left-[200px] top-[-300px] w-[1000px] h-[1300px] object-contain" />
             <img src="/images/box-2.png" className="absolute top-[450px] w-[300px] z-[-1] left-[570px]" />
@@ -49,11 +81,12 @@ function App() {
         {gameStarted && (
           <div className="absolute z-2 top-0 bottom-0 flex flex-col justify-center left-[1024px] w-[300px] duration-[.4s]">
             <DragDropComponent onEnd={setEndGame} />
-            {endGame && <p className="text-white">Game won!</p>}
           </div>
         )}
+      <div className="absolute w-[90%] m-auto left-0 right-0 top-[20px] bg-[rgba(255,255,255,0.2)] rounded-sm p-[15px]">
+        123
+      </div>
     </div>
-     
   );
 }
 

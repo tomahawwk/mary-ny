@@ -220,11 +220,12 @@
   }
 
   .item {
-    @apply mb-2 shadow-md relative perspective-1000 text-[14px] h-[26px];
+    @apply mb-2 shadow-md relative perspective-1000 text-[16px] h-[30px];
+    line-height: 1.4;
   }
 
   .back {
-    @apply backface-hidden p-2 absolute rounded shadow-md border-gray-300 bg-[#cc0000] w-full h-full py-1 px-2;
+    @apply backface-hidden p-2 absolute rounded shadow-md border-gray-300 bg-[rgb(21_19_19)] text-white w-full h-full py-1 px-2;
     @apply ease-cubic;
     pointer-events: none;
     transform: rotateX(180deg);
@@ -238,6 +239,7 @@
   .front {
     @apply backface-visible p-2 absolute rounded shadow-md border-gray-300 bg-[#ffffff] w-full h-full py-1 px-2;
     pointer-events: none;
+    text-align: center;
     @apply ease-cubic;
   }
 }
